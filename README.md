@@ -4,4 +4,6 @@
 ### CodeClimate badge in order to display this project's quality:
 [![Maintainability](https://api.codeclimate.com/v1/badges/779fdd66847efd96a6ec/maintainability)](https://codeclimate.com/github/karinatimm/frontend-project-44/maintainability)
 
+### Brain-even demo asciinema:
+[![Brain Even Demo](https://asciinema.org/a/TbHHVg9lSTQHOI1KtuELXixE7.svg)](https://asciinema.org/a/TbHHVg9lSTQHOI1KtuELXixE7)
 
