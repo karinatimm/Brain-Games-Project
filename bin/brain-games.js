@@ -3,4 +3,3 @@
 import welcomeGameUser from '../src/cli.js';
 
 welcomeGameUser();
-
