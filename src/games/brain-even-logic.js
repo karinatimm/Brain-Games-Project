@@ -10,8 +10,8 @@ export default function isEven() {
   function gameLogic() {
     const randomNumber = Math.floor(Math.random() * 100) + 1;
 
-    const randomQuestion = `${randomNumber}`;
-    const correctAnswer = `${randomNumber % 2 === 0 ? 'yes' : 'no'}`;
+    const randomQuestion = randomNumber;
+    const correctAnswer = randomNumber % 2 === 0 ? 'yes' : 'no';
 
     return [randomQuestion, correctAnswer];
   }
