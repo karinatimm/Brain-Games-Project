@@ -1,20 +1,22 @@
 import readlineSync from 'readline-sync';
 
-export function welcomeUser() {
+export const welcomeUser = () => {
   console.log('Welcome to the Brain Games!');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
   return userName;
-}
+};
 
 export const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
 
-export function runGameEngine(generateGameLogic, gameInstructions) {
+export const runGameEngine = (generateGameLogic, gameInstruction) => {
   const userName = welcomeUser();
 
-  console.log(gameInstructions);
+  console.log(gameInstruction);
 
-  for (let numberOfAnswers = 0; numberOfAnswers < 3; numberOfAnswers += 1) {
+  const numberOfAttempts = 3;
+
+  for (let attempt = 0; attempt < numberOfAttempts; attempt += 1) {
     const [randomQuestion, correctAnswer] = generateGameLogic();
 
     console.log(`Question: ${randomQuestion}`);
@@ -30,4 +32,4 @@ export function runGameEngine(generateGameLogic, gameInstructions) {
     }
   }
   console.log(`Congratulations, ${userName}!`);
-}
+};
