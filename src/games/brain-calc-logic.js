@@ -1,35 +1,43 @@
 import { runGameEngine, generateRandomNumber } from '../index.js';
 
-function getResultOfMathExpression(num1, num2, randomOperator) {
+const getResultOfMathExpression = (num1, num2, randomOperator) => {
+  let result;
   switch (randomOperator) {
     case '+':
-      return `${num1 + num2}`;
+      result = num1 + num2;
+      break;
     case '-':
-      return `${num1 - num2}`;
+      result = num1 - num2;
+      break;
     case '*':
-      return `${num1 * num2}`;
+      result = num1 * num2;
+      break;
     default:
       throw new Error(`Invalid operator: ${randomOperator}`);
   }
-}
 
-export default function calculateMathExpressionGame() {
-  const gameInstructions = 'What is the result of the expression?';
+  return result;
+};
 
-  function generateGameLogic() {
-    const operators = ['+', '-', '*'];
-    const randomNumber1 = generateRandomNumber();
-    const randomNumber2 = generateRandomNumber();
-    const randomOperator = operators[Math.floor(Math.random() * operators.length)];
+const generateGameLogic = () => {
+  const operators = ['+', '-', '*'];
+  const randomNumber1 = generateRandomNumber();
+  const randomNumber2 = generateRandomNumber();
+  const randomOperator = operators[Math.floor(Math.random() * operators.length)];
 
-    const randomQuestion = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
-    const correctAnswer = getResultOfMathExpression(
-      randomNumber1,
-      randomNumber2,
-      randomOperator,
-    );
-    return [randomQuestion, correctAnswer];
-  }
+  const randomQuestion = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
+  const correctAnswer = getResultOfMathExpression(
+    randomNumber1,
+    randomNumber2,
+    randomOperator,
+  ).toString();
+  return [randomQuestion, correctAnswer];
+};
 
-  runGameEngine(generateGameLogic, gameInstructions);
-}
+const runCalculateMathExpressionGame = () => {
+  const gameInstruction = 'What is the result of the expression?';
+
+  runGameEngine(generateGameLogic, gameInstruction);
+};
+
+export default runCalculateMathExpressionGame;
