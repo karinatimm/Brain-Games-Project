@@ -1,18 +1,18 @@
 import { runGameEngine, generateRandomNumber } from '../index.js';
 
-const isNumberEven = (num) => (num % 2 === 0 ? 'yes' : 'no');
+const isNumberEven = (num) => num % 2 === 0;
 
-export default function isEvenNumberGame() {
-  const gameInstructions = 'Answer "yes" if the number is even, otherwise answer "no".';
+const generateGameLogic = () => {
+  const randomNumber = generateRandomNumber();
+  const correctAnswer = isNumberEven(randomNumber) ? 'yes' : 'no';
 
-  function generateGameLogic() {
-    const randomNumber = generateRandomNumber();
+  return [randomNumber, correctAnswer];
+};
 
-    const randomQuestion = `${randomNumber}`;
-    const correctAnswer = isNumberEven(randomNumber);
+const runIsEvenNumberGame = () => {
+  const gameInstruction = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-    return [randomQuestion, correctAnswer];
-  }
+  runGameEngine(generateGameLogic, gameInstruction);
+};
 
-  runGameEngine(generateGameLogic, gameInstructions);
-}
+export default runIsEvenNumberGame;
