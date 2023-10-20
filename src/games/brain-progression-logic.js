@@ -1,41 +1,53 @@
-#!/usr/bin/env node
+import { runGameEngine, generateRandomNumber } from '../index.js';
 
-import { welcomeUser, gameEngine } from '../index.js';
+function generateProgression(
+  progrLength,
+  indexOfHiddenNum,
+  firstNumInProgr,
+  differenceInProgr,
+) {
+  const generatedProgression = [];
 
-export default function findMissNumInProgression() {
-  const userName = welcomeUser();
+  for (let i = 0; i < progrLength; i += 1) {
+    if (i === indexOfHiddenNum) {
+      generatedProgression.push('..');
+    } else {
+      generatedProgression.push(firstNumInProgr + i * differenceInProgr);
+    }
+  }
+  return generatedProgression.join(' ');
+}
 
+export default function findMissingNumInProgressionGame() {
   const gameInstructions = 'What number is missing in the progression?';
 
-  function gameLogic() {
+  function generateGameLogic() {
     const minLength = 5;
     const maxLength = 10;
     const progrLength = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
 
-    const progression = [];
+    // between 0 and 100(inclusive)
+    const firstNumInProgr = generateRandomNumber();
 
-    // between 0 and 100(included)
-    const firstNumInProgr = Math.round(Math.random() * 100);
-
-    // between 1 and 10(included)
+    // between 1 and 10(inclusive)
     const differenceInProgr = Math.floor(Math.random() * 10) + 1;
 
     // between 1 and progrLength(excluded)
     const indexOfHiddenNum = Math.floor(Math.random() * progrLength);
 
-    for (let i = 0; i < progrLength; i += 1) {
-      if (i === indexOfHiddenNum) {
-        progression.push('..');
-      } else {
-        progression.push(firstNumInProgr + i * differenceInProgr);
-      }
-    }
-    const randomQuestion = progression.join(' ');
+    const randomQuestion = generateProgression(
+      progrLength,
+      indexOfHiddenNum,
+      firstNumInProgr,
+      differenceInProgr,
+    );
 
-    const correctAnswer = firstNumInProgr + indexOfHiddenNum * differenceInProgr;
+    const correctAnswer = `${
+      firstNumInProgr + indexOfHiddenNum * differenceInProgr
+    }`;
 
     return [randomQuestion, correctAnswer];
   }
 
-  gameEngine(gameLogic, gameInstructions, userName);
+  runGameEngine(generateGameLogic, gameInstructions);
 }
