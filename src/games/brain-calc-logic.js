@@ -1,38 +1,35 @@
-#!/usr/bin/env node
+import { runGameEngine, generateRandomNumber } from '../index.js';
 
-import { welcomeUser, gameEngine } from '../index.js';
+function getResultOfMathExpression(num1, num2, randomOperator) {
+  switch (randomOperator) {
+    case '+':
+      return `${num1 + num2}`;
+    case '-':
+      return `${num1 - num2}`;
+    case '*':
+      return `${num1 * num2}`;
+    default:
+      throw new Error(`Invalid operator: ${randomOperator}`);
+  }
+}
 
-export default function calc() {
-  const userName = welcomeUser();
-
+export default function calculateMathExpressionGame() {
   const gameInstructions = 'What is the result of the expression?';
 
-  function gameLogic() {
+  function generateGameLogic() {
     const operators = ['+', '-', '*'];
-    const randomNumber1 = Math.floor(Math.random() * 100) + 1;
-    const randomNumber2 = Math.floor(Math.random() * 100) + 1;
+    const randomNumber1 = generateRandomNumber();
+    const randomNumber2 = generateRandomNumber();
     const randomOperator = operators[Math.floor(Math.random() * operators.length)];
 
-    let correctAnswer;
-
-    switch (randomOperator) {
-      case '+':
-        correctAnswer = randomNumber1 + randomNumber2;
-        break;
-      case '-':
-        correctAnswer = randomNumber1 - randomNumber2;
-        break;
-      case '*':
-        correctAnswer = randomNumber1 * randomNumber2;
-        break;
-      default:
-        console.error(`Invalid operator: ${randomOperator}`);
-    }
-
     const randomQuestion = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
-
+    const correctAnswer = getResultOfMathExpression(
+      randomNumber1,
+      randomNumber2,
+      randomOperator,
+    );
     return [randomQuestion, correctAnswer];
   }
 
-  gameEngine(gameLogic, gameInstructions, userName);
+  runGameEngine(generateGameLogic, gameInstructions);
 }
