@@ -1,29 +1,29 @@
 import { runGameEngine, generateRandomNumber } from '../index.js';
 
-function isNumberPrime(number) {
-  if (number < 2) {
-    return 'no';
-  }
+const isNumberPrime = (num) => {
+  if (num < 2) return false;
 
-  for (let divider = 2; divider <= number / 2; divider += 1) {
-    if (number % divider === 0) {
-      return 'no';
+  for (let divider = 2; divider <= num / 2; divider += 1) {
+    if (num % divider === 0) {
+      return false;
     }
   }
-  return 'yes';
-}
 
-export default function isPrimeNumberGame() {
-  const gameInstructions = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+  return true;
+};
 
-  function generateGameLogic() {
-    const randomNumber = generateRandomNumber();
+const generateGameLogic = () => {
+  const randomNumber = generateRandomNumber();
 
-    const randomQuestion = `${randomNumber}`;
-    const correctAnswer = isNumberPrime(randomNumber);
+  const correctAnswer = isNumberPrime(randomNumber) ? 'yes' : 'no';
 
-    return [randomQuestion, correctAnswer];
-  }
+  return [randomNumber, correctAnswer];
+};
 
-  runGameEngine(generateGameLogic, gameInstructions);
-}
+const runIsPrimeNumberGame = () => {
+  const gameInstruction = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+  runGameEngine(generateGameLogic, gameInstruction);
+};
+
+export default runIsPrimeNumberGame;
