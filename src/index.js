@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import readlineSync from 'readline-sync';
 
 export function welcomeUser() {
@@ -9,29 +7,27 @@ export function welcomeUser() {
   return userName;
 }
 
-export function gameEngine(gameLogic, gameInstructions, userName) {
+export const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
+
+export function runGameEngine(generateGameLogic, gameInstructions) {
+  const userName = welcomeUser();
+
   console.log(gameInstructions);
 
-  let numberOfAnswers = 0;
-
-  while (numberOfAnswers < 3) {
-    const [randomQuestion, correctAnswer] = gameLogic();
+  for (let numberOfAnswers = 0; numberOfAnswers < 3; numberOfAnswers += 1) {
+    const [randomQuestion, correctAnswer] = generateGameLogic();
 
     console.log(`Question: ${randomQuestion}`);
     const userAnswer = readlineSync.question('Your answer: ');
 
-    if (userAnswer === correctAnswer.toString()) {
+    if (userAnswer === correctAnswer) {
       console.log('Correct!');
-      numberOfAnswers += 1;
     } else {
       console.log(
         `'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\n Let's try again, ${userName}!`,
       );
-      break;
+      return;
     }
   }
-
-  if (numberOfAnswers === 3) {
-    console.log(`Congratulations, ${userName}!`);
-  }
+  console.log(`Congratulations, ${userName}!`);
 }
