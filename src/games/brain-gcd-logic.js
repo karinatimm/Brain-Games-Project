@@ -1,10 +1,6 @@
-#!/usr/bin/env node
+import { runGameEngine, generateRandomNumber } from '../index.js';
 
-import { welcomeUser, gameEngine } from '../index.js';
-
-export default function findGCD() {
-  const userName = welcomeUser();
-
+export default function findGreatestCommonDivisorGame() {
   const gameInstructions = 'Find the greatest common divisor of given numbers.';
 
   function calculateGCD(num1, num2) {
@@ -18,14 +14,14 @@ export default function findGCD() {
     return a;
   }
 
-  function gameLogic() {
-    const randomNumber1 = Math.floor(Math.random() * 100) + 1;
-    const randomNumber2 = Math.floor(Math.random() * 100) + 1;
-    const correctAnswer = calculateGCD(randomNumber1, randomNumber2);
+  function generateGameLogic() {
+    const randomNumber1 = generateRandomNumber();
+    const randomNumber2 = generateRandomNumber();
+    const correctAnswer = calculateGCD(randomNumber1, randomNumber2).toString();
 
     const randomQuestion = `${randomNumber1} ${randomNumber2}`;
     return [randomQuestion, correctAnswer];
   }
 
-  gameEngine(gameLogic, gameInstructions, userName);
+  runGameEngine(generateGameLogic, gameInstructions);
 }

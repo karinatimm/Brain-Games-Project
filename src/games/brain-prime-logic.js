@@ -1,32 +1,29 @@
-#!/usr/bin/env node
+import { runGameEngine, generateRandomNumber } from '../index.js';
 
-import { welcomeUser, gameEngine } from '../index.js';
+function isNumberPrime(number) {
+  if (number < 2) {
+    return 'no';
+  }
 
-export default function isPrimeNumber() {
-  const userName = welcomeUser();
+  for (let divider = 2; divider <= number / 2; divider += 1) {
+    if (number % divider === 0) {
+      return 'no';
+    }
+  }
+  return 'yes';
+}
 
+export default function isPrimeNumberGame() {
   const gameInstructions = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-  function gameLogic() {
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
+  function generateGameLogic() {
+    const randomNumber = generateRandomNumber();
 
-    const arrOfDividers = [];
-
-    for (let i = 1; i <= randomNumber; i += 1) {
-      if (randomNumber % i === 0) {
-        arrOfDividers.push(i);
-      }
-    }
-
-    const randomQuestion = randomNumber;
-    const correctAnswer = arrOfDividers.length === 2
-      && arrOfDividers[0] === 1
-      && arrOfDividers[arrOfDividers.length - 1] === randomNumber
-      ? 'yes'
-      : 'no';
+    const randomQuestion = `${randomNumber}`;
+    const correctAnswer = isNumberPrime(randomNumber);
 
     return [randomQuestion, correctAnswer];
   }
 
-  gameEngine(gameLogic, gameInstructions, userName);
+  runGameEngine(generateGameLogic, gameInstructions);
 }
