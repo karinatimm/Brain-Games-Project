@@ -1,20 +1,18 @@
-#!/usr/bin/env node
+import { runGameEngine, generateRandomNumber } from '../index.js';
 
-import { welcomeUser, gameEngine } from '../index.js';
+const isNumberEven = (num) => (num % 2 === 0 ? 'yes' : 'no');
 
-export default function isEven() {
-  const userName = welcomeUser();
-
+export default function isEvenNumberGame() {
   const gameInstructions = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-  function gameLogic() {
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
+  function generateGameLogic() {
+    const randomNumber = generateRandomNumber();
 
-    const randomQuestion = randomNumber;
-    const correctAnswer = randomNumber % 2 === 0 ? 'yes' : 'no';
+    const randomQuestion = `${randomNumber}`;
+    const correctAnswer = isNumberEven(randomNumber);
 
     return [randomQuestion, correctAnswer];
   }
 
-  gameEngine(gameLogic, gameInstructions, userName);
+  runGameEngine(generateGameLogic, gameInstructions);
 }
