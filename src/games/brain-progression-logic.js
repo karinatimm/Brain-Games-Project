@@ -20,13 +20,20 @@ const generateGameLogic = () => {
   const progrLength = generateRandomNumber(minLength, maxLength);
 
   // between 0 and 100(inclusive)
-  const firstNumInProgr = generateRandomNumber(0, 100);
+  const firstNumInProgr = generateRandomNumber();
 
   // between 1 and 10(inclusive)
-  const differenceInProgr = generateRandomNumber(1, 10);
+  const minDifference = 1;
+  const maxDifference = 10;
+  const differenceInProgr = generateRandomNumber(minDifference, maxDifference);
 
   // between 1 and progrLength(excluded)
-  const indexOfHiddenNum = generateRandomNumber(1, progrLength - 1);
+  const minIndexOfHiddenNum = 1;
+  const maxIndexOfHiddenNum = progrLength - 1;
+  const indexOfHiddenNum = generateRandomNumber(
+    minIndexOfHiddenNum,
+    maxIndexOfHiddenNum,
+  );
 
   const generatedProgression = generateProgression(
     progrLength,
