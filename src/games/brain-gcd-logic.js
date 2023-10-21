@@ -12,8 +12,8 @@ const calculateGCD = (num1, num2) => {
 };
 
 const generateGameLogic = () => {
-  const randomNumber1 = generateRandomNumber(0, 100);
-  const randomNumber2 = generateRandomNumber(0, 100);
+  const randomNumber1 = generateRandomNumber();
+  const randomNumber2 = generateRandomNumber();
   const correctAnswer = calculateGCD(randomNumber1, randomNumber2).toString();
 
   const randomQuestion = `${randomNumber1} ${randomNumber2}`;
