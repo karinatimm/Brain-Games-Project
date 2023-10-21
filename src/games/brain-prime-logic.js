@@ -13,7 +13,7 @@ const isNumberPrime = (num) => {
 };
 
 const generateGameLogic = () => {
-  const randomNumber = generateRandomNumber();
+  const randomNumber = generateRandomNumber(0, 100);
 
   const correctAnswer = isNumberPrime(randomNumber) ? 'yes' : 'no';
 
