@@ -15,8 +15,8 @@ const getResultOfMathExpression = (num1, num2, randomOperator) => {
 
 const generateGameLogic = () => {
   const operators = ['+', '-', '*'];
-  const randomNumber1 = generateRandomNumber(0, 100);
-  const randomNumber2 = generateRandomNumber(0, 100);
+  const randomNumber1 = generateRandomNumber();
+  const randomNumber2 = generateRandomNumber();
   const randomOperator = operators[Math.floor(Math.random() * operators.length)];
 
   const randomQuestion = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
