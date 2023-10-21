@@ -7,7 +7,10 @@ export const welcomeUser = () => {
   return userName;
 };
 
-export const generateRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+export const generateRandomNumber = (min = 0, max = 100) => {
+  const generatedRandomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  return generatedRandomNum;
+};
 
 export const runGameEngine = (generateGameLogic, gameInstruction) => {
   const userName = welcomeUser();
