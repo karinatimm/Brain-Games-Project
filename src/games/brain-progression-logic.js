@@ -2,42 +2,42 @@ import { runGameEngine, generateRandomNumber } from '../index.js';
 
 const generateProgression = (
   progrLength,
-  indexOfHiddenNum,
   firstNumInProgr,
   differenceInProgr,
 ) => {
-  const generatedProgression = [];
+  const progression = [];
 
   for (let i = 0; i < progrLength; i += 1) {
-    if (i === indexOfHiddenNum) {
-      generatedProgression.push('..');
-    } else {
-      generatedProgression.push(firstNumInProgr + i * differenceInProgr);
-    }
+    progression.push(firstNumInProgr + i * differenceInProgr);
   }
-  return generatedProgression;
+
+  return progression;
 };
 
 const generateGameLogic = () => {
   const minLength = 5;
   const maxLength = 10;
-  const progrLength = (generateRandomNumber() % (maxLength - minLength + 1)) + minLength;
+  const progrLength = generateRandomNumber(minLength, maxLength);
 
   // between 0 and 100(inclusive)
-  const firstNumInProgr = generateRandomNumber();
+  const firstNumInProgr = generateRandomNumber(0, 100);
 
   // between 1 and 10(inclusive)
-  const differenceInProgr = (generateRandomNumber() % 10) + 1;
+  const differenceInProgr = generateRandomNumber(1, 10);
 
   // between 1 and progrLength(excluded)
-  const indexOfHiddenNum = (generateRandomNumber() % (progrLength - 1)) + 1;
+  const indexOfHiddenNum = generateRandomNumber(1, progrLength - 1);
 
-  const randomQuestion = generateProgression(
+  const generatedProgression = generateProgression(
     progrLength,
-    indexOfHiddenNum,
     firstNumInProgr,
     differenceInProgr,
-  ).join(' ');
+  );
+
+  // hide number
+  generatedProgression[indexOfHiddenNum] = '..';
+
+  const randomQuestion = generatedProgression.join(' ');
 
   const correctAnswer = `${
     firstNumInProgr + indexOfHiddenNum * differenceInProgr
