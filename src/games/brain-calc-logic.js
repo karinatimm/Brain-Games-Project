@@ -1,28 +1,22 @@
 import { runGameEngine, generateRandomNumber } from '../index.js';
 
 const getResultOfMathExpression = (num1, num2, randomOperator) => {
-  let result;
   switch (randomOperator) {
     case '+':
-      result = num1 + num2;
-      break;
+      return num1 + num2;
     case '-':
-      result = num1 - num2;
-      break;
+      return num1 - num2;
     case '*':
-      result = num1 * num2;
-      break;
+      return num1 * num2;
     default:
       throw new Error(`Invalid operator: ${randomOperator}`);
   }
-
-  return result;
 };
 
 const generateGameLogic = () => {
   const operators = ['+', '-', '*'];
-  const randomNumber1 = generateRandomNumber();
-  const randomNumber2 = generateRandomNumber();
+  const randomNumber1 = generateRandomNumber(0, 100);
+  const randomNumber2 = generateRandomNumber(0, 100);
   const randomOperator = operators[Math.floor(Math.random() * operators.length)];
 
   const randomQuestion = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
