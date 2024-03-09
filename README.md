@@ -1,4 +1,4 @@
-# Brain Games Project
+# The Brain Games Project
 
 ### Progect description:
 
@@ -23,11 +23,11 @@ This project includes following games:
 
 ### Hexlet tests and linter status:
 
-[![Actions Status](https://github.com/karinatimm/frontend-project-44/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/karinatimm/frontend-project-44/actions)
+[![Actions Status](https://github.com/karinatimm/Brain-Games-Project/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/karinatimm/Brain-Games-Project/actions)
 
 ### CodeClimate badge in order to display this project's quality:
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/779fdd66847efd96a6ec/maintainability)](https://codeclimate.com/github/karinatimm/frontend-project-44/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/779fdd66847efd96a6ec/maintainability)](https://codeclimate.com/github/karinatimm/Brain-Games-Project/maintainability)
 
 ### System requirements:
 
@@ -51,11 +51,11 @@ npm -v
 
 Open your terminal or command prompt and navigate to the directory where you want to store the Brain Games. After that, clone the repository from GitHub using this link:
 
-git clone https://github.com/karinatimm/frontend-project-44.git
+git clone https://github.com/karinatimm/Brain-Games-Project.git
 
 - Go to the project directory on your computer (you can change the name if you want):
 
-cd frontend-project-44.git
+cd Brain-Games-Project
 
 - Install project dependencies using npm:
 
